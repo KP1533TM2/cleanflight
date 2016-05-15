@@ -62,7 +62,9 @@
 #define PG_CHANNEL_RANGE_CONFIG 44
 #define PG_MODE_COLOR_CONFIG 45
 #define PG_SPECIAL_COLOR_CONFIG 46
-
+#ifdef NAZE
+#define PG_LED_REMAP_CONFIG 48
+#endif
 // Driver configuration
 #define PG_DRIVER_PWM_RX_CONFIG 100
 

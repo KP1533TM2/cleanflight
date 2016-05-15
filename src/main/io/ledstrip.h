@@ -130,6 +130,10 @@ typedef struct ledConfig_s {
 extern uint8_t ledCount;
 extern uint8_t ledsInRingCount;
 
+#ifdef NAZE
+PG_DECLARE(uint8_t, ledRemap);
+#endif
+
 PG_DECLARE_ARR(ledConfig_t, MAX_LED_STRIP_LENGTH, ledConfigs);
 PG_DECLARE_ARR(hsvColor_t, CONFIGURABLE_COLOR_COUNT, colors);
 PG_DECLARE_ARR(modeColorIndexes_t, MODE_COUNT, modeColors);

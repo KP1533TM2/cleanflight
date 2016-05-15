@@ -57,6 +57,10 @@
 #include "config/config.h"
 #include "config/feature.h"
 
+#ifdef NAZE
+PG_REGISTER_WITH_RESET_FN(uint8_t, ledRemap, PG_LED_REMAP_CONFIG, 0);
+#endif
+
 PG_REGISTER_ARR_WITH_RESET_FN(ledConfig_t, MAX_LED_STRIP_LENGTH, ledConfigs, PG_LED_STRIP_CONFIG, 0);
 PG_REGISTER_ARR_WITH_RESET_FN(hsvColor_t, CONFIGURABLE_COLOR_COUNT, colors, PG_COLOR_CONFIG, 0);
 PG_REGISTER_ARR_WITH_RESET_FN(modeColorIndexes_t, MODE_COUNT, modeColors, PG_MODE_COLOR_CONFIG, 0);
@@ -245,6 +249,11 @@ const specialColorIndexes_t defaultSpecialColors[] = {
 void pgResetFn_ledConfigs(ledConfig_t *instance)
 {
     memcpy(instance, &defaultLedStripConfig, sizeof(defaultLedStripConfig));
+}
+
+void pgResetFn_ledRemap(uint8_t *instance)
+{
+	*instance = 0;
 }
 
 /*

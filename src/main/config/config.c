@@ -221,7 +221,6 @@ static void validateAndFixConfig(void)
     }
 #endif
 
-
 #if defined(LED_STRIP)
 #if (defined(USE_SOFTSERIAL1) || defined(USE_SOFTSERIAL2))
     if (featureConfigured(FEATURE_SOFTSERIAL) && (
@@ -233,9 +232,11 @@ static void validateAndFixConfig(void)
             || (LED_STRIP_TIMER == SOFTSERIAL_2_TIMER)
 #endif
     )) {
-        // led strip needs the same timer as softserial
-        featureClear(FEATURE_LED_STRIP);
+        // instead of conflicting with softserial, led strip now conflicts with RSSI_ADC
+//        featureClear(FEATURE_RSSI_ADC);
     }
+    
+    if (featureConfigured(FEATURE_LED_STRIP)) featureClear(FEATURE_RSSI_ADC);
 #endif
 
 #if defined(TRANSPONDER) && !defined(UNIT_TEST)
