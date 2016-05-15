@@ -22,7 +22,17 @@
 
 #include "common/color.h"
 #include "drivers/light_ws2811strip.h"
+
 #include "nvic.h"
+
+#ifdef NAZE
+PG_REGISTER_WITH_RESET_FN(uint8_t, ledRemap, PG_LED_REMAP_CONFIG, 0);
+
+void pgResetFn_ledRemap(uint8_t *instance)
+{
+	*instance = 0;
+}
+#endif
 
 void ws2811LedStripHardwareInit(void)
 {
