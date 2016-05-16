@@ -232,10 +232,10 @@ static void validateAndFixConfig(void)
     if (featureConfigured(FEATURE_SOFTSERIAL) && (
             0
 #ifdef USE_SOFTSERIAL1
-            || (&ws2811_current->tim == SOFTSERIAL_1_TIMER)
+            || (ws2811hw[lrm_System].tim == SOFTSERIAL_1_TIMER)
 #endif
 #ifdef USE_SOFTSERIAL2
-            || (&ws2811_current->tim == SOFTSERIAL_2_TIMER)
+            || (ws2811hw[lrm_System].tim == SOFTSERIAL_2_TIMER)
 #endif
     )) {
         // led strip needs the same timer as softserial
@@ -244,8 +244,8 @@ static void validateAndFixConfig(void)
 #endif // (defined(USE_SOFTSERIAL1) || defined(USE_SOFTSERIAL2))
 
 	if (featureConfigured(FEATURE_RSSI_ADC) && 
-			(ws2811_current->gpio     == RSSI_ADC_GPIO) &&
-			(ws2811_current->gpio_pin == RSSI_ADC_GPIO_PIN)
+			(ws2811hw[lrm_System].gpio     == RSSI_ADC_GPIO) &&
+			(ws2811hw[lrm_System].gpio_pin == RSSI_ADC_GPIO_PIN)
 	) {
 		featureClear(FEATURE_LED_STRIP);
 	}
