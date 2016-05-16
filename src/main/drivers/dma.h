@@ -15,6 +15,9 @@
  * along with Cleanflight.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef __DMA_H__
+#define __DMA_H__
+
 typedef void (*dmaCallbackHandlerFuncPtr)(DMA_Channel_TypeDef *channel);
 
 typedef enum {
@@ -33,3 +36,5 @@ typedef struct dmaHandlers_s {
 
 void dmaInit(void);
 void dmaSetHandler(dmaHandlerIdentifier_e identifier, dmaCallbackHandlerFuncPtr callback);
+
+#endif

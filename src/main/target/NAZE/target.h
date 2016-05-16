@@ -186,13 +186,19 @@
 
 
 #define LED_STRIP
-#define LED_STRIP_TIMER TIM2
-#define WS2811_DMA_TC_FLAG           DMA1_FLAG_TC7
-#define WS2811_DMA_HANDLER_IDENTIFER DMA1_CH7_HANDLER
+
+/* Those are legacy now, */
+#define LED_STRIP_TIMER                  TIM3
+#define WS2811_DMA_TC_FLAG               DMA1_FLAG_TC6
+#define WS2811_DMA_HANDLER_IDENTIFER     DMA1_CH6_HANDLER
+
+#define LED_STRIP_TIMER_ALT              TIM2
+#define WS2811_DMA_TC_FLAG_ALT           DMA1_FLAG_TC7
+#define WS2811_DMA_HANDLER_IDENTIFER_ALT DMA1_CH7_HANDLER
 
 #define GPS
 #define GTUNE
-#define BLACKBOX
+//#define BLACKBOX
 #define TELEMETRY
 #define SERIAL_RX
 #define USE_SERVOS

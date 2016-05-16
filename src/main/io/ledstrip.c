@@ -38,6 +38,7 @@
 #include "config/parameter_group_ids.h"
 
 #include "drivers/light_ws2811strip.h"
+#include "drivers/light_ws2811strip_configs.h"
 #include "drivers/system.h"
 #include "drivers/serial.h"
 

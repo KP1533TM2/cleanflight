@@ -534,10 +534,8 @@ const clivalue_t valueTable[] = {
 
     { "reboot_character",           VAR_UINT8  | MASTER_VALUE, .config.minmax = { 48,  126 } , PG_SERIAL_CONFIG, offsetof(serialConfig_t, reboot_character)},
 
-#ifdef LED_STRIP
-#ifdef NAZE
+#if defined(LED_STRIP) && defined(NAZE)
     { "led_remap",                  VAR_UINT8  | MASTER_VALUE, .config.minmax = {0, 1} , PG_LED_REMAP_CONFIG, 0 },
-#endif  // NAZE
 #endif  // LED_STRIP
 
 #ifdef GPS

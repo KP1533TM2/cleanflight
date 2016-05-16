@@ -32,6 +32,10 @@
 #include "pwm_rx.h"
 #include "pwm_mapping.h"
 
+#ifdef NAZE
+#include "drivers/light_ws2811strip_configs.h"
+#endif
+
 #ifdef STM32F10X
 #include "serial_uart_stm32f10x.h"
 #endif
@@ -717,8 +721,13 @@ pwmIOConfiguration_t *pwmInit(drv_pwm_config_t *init)
 #ifdef LED_STRIP_TIMER
         // skip LED Strip output
         if (init->useLEDStrip) {
+#ifdef NAZE
+            if (timerHardwarePtr->tim == ws2811_current->tim)
+            	continue;
+#else
             if (timerHardwarePtr->tim == LED_STRIP_TIMER)
                 continue;
+#endif
 #if defined(STM32F303xC) && defined(WS2811_GPIO) && defined(WS2811_PIN_SOURCE)
             if (timerHardwarePtr->gpio == WS2811_GPIO && timerHardwarePtr->gpioPinSource == WS2811_PIN_SOURCE)
                 continue;

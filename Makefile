@@ -347,6 +347,7 @@ NAZE_SRC = startup_stm32f10x_md_gcc.S \
 		   drivers/light_led_stm32f10x.c \
 		   drivers/light_ws2811strip.c \
 		   drivers/light_ws2811strip_stm32f10x.c \
+		   drivers/light_ws2811strip_configs.c \
 		   drivers/sonar_hcsr04.c \
 		   drivers/pwm_mapping.c \
 		   drivers/pwm_output.c \
@@ -391,6 +392,7 @@ EUSTM32F103RC_SRC = startup_stm32f10x_hd_gcc.S \
 		   drivers/light_led_stm32f10x.c \
 		   drivers/light_ws2811strip.c \
 		   drivers/light_ws2811strip_stm32f10x.c \
+		   drivers/light_ws2811strip_configs.c \
 		   drivers/pwm_mapping.c \
 		   drivers/pwm_output.c \
 		   drivers/pwm_rx.c \
@@ -421,6 +423,7 @@ OLIMEXINO_SRC = startup_stm32f10x_md_gcc.S \
 		   drivers/light_led_stm32f10x.c \
 		   drivers/light_ws2811strip.c \
 		   drivers/light_ws2811strip_stm32f10x.c \
+		   drivers/light_ws2811strip_configs.c \
 		   drivers/pwm_mapping.c \
 		   drivers/pwm_output.c \
 		   drivers/pwm_rx.c \
@@ -478,6 +481,7 @@ CC3D_SRC = \
 		   drivers/light_led_stm32f10x.c \
 		   drivers/light_ws2811strip.c \
 		   drivers/light_ws2811strip_stm32f10x.c \
+		   drivers/light_ws2811strip_configs.c \
 		   drivers/pwm_mapping.c \
 		   drivers/pwm_output.c \
 		   drivers/pwm_rx.c \
@@ -523,6 +527,7 @@ STM32F3DISCOVERY_COMMON_SRC = \
 		   $(STM32F30x_COMMON_SRC) \
 		   drivers/light_ws2811strip.c \
 		   drivers/light_ws2811strip_stm32f30x.c \
+		   drivers/light_ws2811strip_configs.c \
 		   drivers/accgyro_l3gd20.c \
 		   drivers/accgyro_l3gd20.c \
 		   drivers/accgyro_lsm303dlhc.c \
@@ -564,6 +569,7 @@ COLIBRI_RACE_SRC = \
 		   drivers/display_ug2864hsweg01.c \
 		   drivers/light_ws2811strip.c \
 		   drivers/light_ws2811strip_stm32f30x.c \
+		   drivers/light_ws2811strip_configs.c \
 		   drivers/serial_usb_vcp.c \
 		   $(HIGHEND_SRC) \
 		   $(COMMON_SRC) \
@@ -576,6 +582,7 @@ LUX_RACE_SRC = \
 		   drivers/accgyro_spi_mpu6500.c \
 		   drivers/light_ws2811strip.c \
 		   drivers/light_ws2811strip_stm32f30x.c \
+		   drivers/light_ws2811strip_configs.c \
 		   drivers/serial_usb_vcp.c \
 		   $(HIGHEND_SRC) \
 		   $(COMMON_SRC) \
@@ -590,6 +597,7 @@ SPARKY_SRC = \
 		   drivers/compass_ak8975.c \
 		   drivers/light_ws2811strip.c \
 		   drivers/light_ws2811strip_stm32f30x.c \
+		   drivers/light_ws2811strip_configs.c \
 		   drivers/serial_usb_vcp.c \
 		   drivers/sonar_hcsr04.c \
 		   $(HIGHEND_SRC) \
@@ -619,6 +627,7 @@ RMDO_SRC = \
 		   drivers/flash_m25p16.c \
 		   drivers/light_ws2811strip.c \
 		   drivers/light_ws2811strip_stm32f30x.c \
+		   drivers/light_ws2811strip_configs.c \
 		   drivers/serial_softserial.c \
 		   drivers/sonar_hcsr04.c \
 		   io/flashfs.c \
@@ -636,6 +645,7 @@ SPRACINGF3_SRC = \
 		   drivers/flash_m25p16.c \
 		   drivers/light_ws2811strip.c \
 		   drivers/light_ws2811strip_stm32f30x.c \
+		   drivers/light_ws2811strip_configs.c \
 		   drivers/serial_softserial.c \
 		   drivers/sonar_hcsr04.c \
 		   io/flashfs.c \
@@ -652,6 +662,7 @@ SPRACINGF3EVO_SRC	 = \
 		   drivers/display_ug2864hsweg01.h \
 		   drivers/light_ws2811strip.c \
 		   drivers/light_ws2811strip_stm32f30x.c \
+		   drivers/light_ws2811strip_configs.c \
 		   drivers/serial_usb_vcp.c \
 		   drivers/sdcard.c \
 		   drivers/sdcard_standard.c \
@@ -674,6 +685,7 @@ MOTOLAB_SRC = \
 		   drivers/display_ug2864hsweg01.c \
 		   drivers/light_ws2811strip.c \
 		   drivers/light_ws2811strip_stm32f30x.c \
+		   drivers/light_ws2811strip_configs.c \
 		   drivers/serial_usb_vcp.c \
 		   drivers/flash_m25p16.c \
 		   io/flashfs.c \
@@ -692,6 +704,7 @@ SPRACINGF3MINI_SRC	 = \
 		   drivers/flash_m25p16.c \
 		   drivers/light_ws2811strip.c \
 		   drivers/light_ws2811strip_stm32f30x.c \
+		   drivers/light_ws2811strip_configs.c \
 		   drivers/serial_softserial.c \
 		   drivers/serial_usb_vcp.c \
 		   drivers/sonar_hcsr04.c \

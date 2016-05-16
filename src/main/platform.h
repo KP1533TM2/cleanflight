@@ -34,6 +34,7 @@
 
 #include "stm32f10x_conf.h"
 #include "stm32f10x_gpio.h"
+#include "stm32f10x_tim.h"
 #include "core_cm3.h"
 
 // Chip Unique ID on F103

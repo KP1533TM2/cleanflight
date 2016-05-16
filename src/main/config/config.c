@@ -40,6 +40,7 @@
 #include "drivers/compass.h"
 #include "drivers/system.h"
 #include "drivers/serial.h"
+#include "drivers/light_ws2811strip_configs.h"
 
 #include "io/rate_profile.h"
 #include "io/rc_controls.h"
@@ -222,6 +223,36 @@ static void validateAndFixConfig(void)
 #endif
 
 #if defined(LED_STRIP)
+
+#if defined(NAZE)
+
+// Naze32 is now a bit of a special case, being able to remap LED_STRIP feature
+
+#if (defined(USE_SOFTSERIAL1) || defined(USE_SOFTSERIAL2))
+    if (featureConfigured(FEATURE_SOFTSERIAL) && (
+            0
+#ifdef USE_SOFTSERIAL1
+            || (&ws2811_current->tim == SOFTSERIAL_1_TIMER)
+#endif
+#ifdef USE_SOFTSERIAL2
+            || (&ws2811_current->tim == SOFTSERIAL_2_TIMER)
+#endif
+    )) {
+        // led strip needs the same timer as softserial
+        featureClear(FEATURE_LED_STRIP);
+    }
+#endif // (defined(USE_SOFTSERIAL1) || defined(USE_SOFTSERIAL2))
+
+	if (featureConfigured(FEATURE_RSSI_ADC) && 
+			(ws2811_current->gpio     == RSSI_ADC_GPIO) &&
+			(ws2811_current->gpio_pin == RSSI_ADC_GPIO_PIN)
+	) {
+		featureClear(FEATURE_LED_STRIP);
+	}
+
+
+#else	// NAZE
+
 #if (defined(USE_SOFTSERIAL1) || defined(USE_SOFTSERIAL2))
     if (featureConfigured(FEATURE_SOFTSERIAL) && (
             0
@@ -232,11 +263,11 @@ static void validateAndFixConfig(void)
             || (LED_STRIP_TIMER == SOFTSERIAL_2_TIMER)
 #endif
     )) {
-        // instead of conflicting with softserial, led strip now conflicts with RSSI_ADC
-//        featureClear(FEATURE_RSSI_ADC);
+        // led strip needs the same timer as softserial
+        featureClear(FEATURE_LED_STRIP);
     }
-    
-    if (featureConfigured(FEATURE_LED_STRIP)) featureClear(FEATURE_RSSI_ADC);
+#endif // (defined(USE_SOFTSERIAL1) || defined(USE_SOFTSERIAL2))
+
 #endif
 
 #if defined(TRANSPONDER) && !defined(UNIT_TEST)

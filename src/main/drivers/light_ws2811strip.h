@@ -28,13 +28,6 @@
 #define BIT_COMPARE_1 17 // timer compare value for logical 1
 #define BIT_COMPARE_0 9  // timer compare value for logical 0
 
-#include "config/parameter_group.h"
-#include "config/parameter_group_ids.h"
-
-#ifdef NAZE
-PG_DECLARE(uint8_t, ledRemap);
-#endif
-
 void ws2811LedStripInit(void);
 
 void ws2811LedStripHardwareInit(void);

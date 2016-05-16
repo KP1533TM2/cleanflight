@@ -61,6 +61,7 @@
 #include "drivers/usb_io.h"
 #include "drivers/transponder_ir.h"
 #include "drivers/gyro_sync.h"
+#include "drivers/light_ws2811strip_configs.h"
 
 #include "rx/rx.h"
 #include "rx/spektrum.h"
@@ -257,6 +258,10 @@ void init(void)
 
 #ifdef USE_HARDWARE_REVISION_DETECTION
     detectHardwareRevision();
+#endif
+
+#if defined(NAZE) && defined(LED_STRIP)
+	initLEDMapping();
 #endif
 
     // Latch active features to be used for feature() in the remainder of init().
@@ -546,6 +551,7 @@ void init(void)
 #endif
 
 #ifdef LED_STRIP
+
     ledStripInit();
 
     if (feature(FEATURE_LED_STRIP)) {

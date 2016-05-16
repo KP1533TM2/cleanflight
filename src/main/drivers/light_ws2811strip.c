@@ -35,6 +35,7 @@
 #include "common/colorconversion.h"
 #include "drivers/dma.h"
 #include "drivers/light_ws2811strip.h"
+#include "drivers/light_ws2811strip_configs.h"
 
 uint8_t ledStripDMABuffer[WS2811_DMA_BUFFER_SIZE];
 volatile uint8_t ws2811LedDataTransferInProgress = 0;
@@ -77,6 +78,28 @@ void setStripColors(const hsvColor_t *colors)
     }
 }
 
+#ifdef NAZE
+
+void ws2811DMAHandler(DMA_Channel_TypeDef *channel) {
+    if (DMA_GetFlagStatus(ws2811_current->dma_tc_flag)) {
+        ws2811LedDataTransferInProgress = 0;
+        DMA_Cmd(channel, DISABLE);
+        DMA_ClearFlag(ws2811_current->dma_tc_flag);
+    }
+}
+
+// FIXME: Inconsistency: array[index] used here, but a pointer is used in the driver code
+
+void ws2811LedStripInit(void)
+{
+    memset(&ledStripDMABuffer, 0, WS2811_DMA_BUFFER_SIZE);
+    dmaSetHandler(ws2811_current->dma_interrupt_handler, ws2811DMAHandler);
+    ws2811LedStripHardwareInit();
+    ws2811UpdateStrip();
+}
+
+#else
+
 void ws2811DMAHandler(DMA_Channel_TypeDef *channel) {
     if (DMA_GetFlagStatus(WS2811_DMA_TC_FLAG)) {
         ws2811LedDataTransferInProgress = 0;
@@ -92,6 +115,8 @@ void ws2811LedStripInit(void)
     ws2811LedStripHardwareInit();
     ws2811UpdateStrip();
 }
+
+#endif
 
 bool isWS2811LedStripReady(void)
 {
